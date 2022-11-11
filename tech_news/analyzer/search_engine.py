@@ -27,8 +27,25 @@ def search_by_date(date):
 
 
 # Requisito 8
+
 def search_by_tag(tag):
-    """Seu código deve vir aqui"""
+    tidings = []
+    search_by_tag = search_news(
+            {
+                "tags": {
+                    "$regex": tag,
+                    "$options": "i"
+                }
+            }
+        )
+    for notice in search_by_tag:
+        tidings.append(
+            (
+                notice["title"],
+                notice["url"]
+            )
+        )
+    return tidings
 
 
 # Requisito 9
